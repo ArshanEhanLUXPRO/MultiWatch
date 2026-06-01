@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>www.multiwatch.com </title>
+    <style>
+        body { 
+            background: #000; 
+            color: #fff; 
+            font-family: sans-serif;
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            height: 100vh; 
+            margin: 0;
+        }
+        .container { width: 95%; max-width: 800px; text-align: center; }
+        h1 { font-size: 1.2rem; color: #ff3e3e; margin-bottom: 20px; text-transform: uppercase; }
+
+        /* This box hides the corners of the video where icons hide */
+        .video-protection-layer {
+            position: relative;
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden; /* This chops off anything sticking out */
+            box-shadow: 0 0 25px rgba(255, 0, 0, 0.5);
+        }
+
+        video { 
+            width: 100%; 
+            display: block;
+            background: #000;
+        }
+
+        /* THE BLOCKER: A physical invisible barrier over the icon area */
+        .icon-blocker {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 20%; /* Covers the whole right side top corner */
+            height: 20%;
+            z-index: 999;
+            background: transparent;
+        }
+    </style>
+</head>
+<body oncontextmenu="return false;">
+
+    <div class="container">
+        <h1>Now broadcasting demon house</h1>
+        
+        <div class="video-protection-layer">
+            <!-- This invisible div blocks clicks on the icon -->
+            <div class="icon-blocker"></div>
+
+            <video id="player" controls controlsList="nodownload" disablePictureInPicture>
+                <source src="https://www.dropbox.com/scl/fi/bdlnhjd9af6lwq7r2xprg/Demon-House-Full-Video.mp4?rlkey=yzghjd3snqmtol8uy4xzxu1yb&st=w8scy4uk&raw=1" type="video/mp4">
+            </video>
+        </div>
+
+        <p style="margin-top:15px; font-size:10px; color:#444;">Multiwatch is a video broadcasting company</p>
+    </div>
+
+</body>
+</html>
