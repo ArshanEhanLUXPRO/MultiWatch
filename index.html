@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login</title>
+
+<style>
+body{
+    background:#000;
+    color:white;
+    font-family:Arial,sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+.box{
+    background:#111;
+    padding:25px;
+    border-radius:15px;
+    text-align:center;
+    box-shadow:0 0 20px red;
+}
+input{
+    width:250px;
+    padding:10px;
+    margin:8px;
+}
+button{
+    width:270px;
+    padding:10px;
+    background:red;
+    color:white;
+    border:none;
+    cursor:pointer;
+}
+</style>
+</head>
+<body>
+
+<div class="box">
+    <h2>Movie Login</h2>
+
+    <input type="email" id="email" placeholder="Email"><br>
+    <input type="password" id="password" placeholder="Password"><br>
+
+    <button onclick="signup()">Sign Up</button><br><br>
+    <button onclick="login()">Login</button>
+
+    <p id="msg"></p>
+</div>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+getAuth,
+createUserWithEmailAndPassword,
+signInWithEmailAndPassword
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDPd0sFleNOLAiR4DOG6MOiDn4QQ4DT2tk",
+  authDomain: "multiwatch-c3427.firebaseapp.com",
+  projectId: "multiwatch-c3427",
+  storageBucket: "multiwatch-c3427.firebasestorage.app",
+  messagingSenderId: "459855937371",
+  appId: "1:459855937371:web:3ed35a591fbdd7c483e47e",
+  measurementId: "G-LGV3XG5NVF"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+window.signup = function(){
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    createUserWithEmailAndPassword(auth,email,password)
+    .then(()=>{
+        document.getElementById("msg").innerHTML="Account Created!";
+    })
+    .catch(err=>{
+        document.getElementById("msg").innerHTML=err.message;
+    });
+}
+
+window.login = function(){
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    signInWithEmailAndPassword(auth,email,password)
+    .then(()=>{
+        window.location.href="movie.html";
+    })
+    .catch(err=>{
+        document.getElementById("msg").innerHTML=err.message;
+    });
+}
+
+</script>
+
+</body>
+</html>
